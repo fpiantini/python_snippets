@@ -1,2 +1,4 @@
 .setenv
 __pycache__
+*.npy
+*.npz
