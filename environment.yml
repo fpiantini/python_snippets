@@ -1,0 +1,12 @@
+name: pythonds
+dependencies:
+- python=3
+- pandas
+- matplotlib
+- seaborn
+- wget
+- pylint
+- pip
+- pip:
+  - nba-api
+  - ibm_watson
