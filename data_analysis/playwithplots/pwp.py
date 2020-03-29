@@ -14,7 +14,7 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+from plotutils import mplu_realcircle, mplu_text
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
 def linspace_1_to_10():
@@ -122,6 +122,17 @@ def three_subplots_advanced():
     add_titlebox(ax2, 'Histogram: home age')
     add_titlebox(ax3, 'Histogram: area population (log scl.)')
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - -
+def plot_with_decorations():
+
+    # same data and plot of the "quadratic" case
+    x = np.linspace(-10, 10, num=40)
+    x2 = list(map(lambda x: x*x, x))
+    fig, ax = plt.subplots()
+    ax.plot(x, x2)
+
+    mplu_realcircle(ax, 0, 40, 2.5)
+    mplu_text(ax, 0, 40, "Hello MPL")
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
 def add_titlebox(ax, text):
@@ -138,8 +149,8 @@ def main():
     linspace_1_to_10()
     quadratic_more_structured()
     two_subplots()
-
     three_subplots_advanced()
+    plot_with_decorations()
 
     plt.show()
 
