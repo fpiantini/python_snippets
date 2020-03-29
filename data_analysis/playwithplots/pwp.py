@@ -14,7 +14,7 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 import seaborn as sns
-from plotutils import mplu_realcircle, mplu_text
+from plotutils import mplu_realcircle, mplu_text, mplu_realsquare, mplu_arrow, mplu_line
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
 def linspace_1_to_10():
@@ -133,6 +133,11 @@ def plot_with_decorations():
 
     mplu_realcircle(ax, 0, 40, 2.5)
     mplu_text(ax, 0, 40, "Hello MPL")
+    mplu_realsquare(ax, -0.55, 77, 0.9)
+    mplu_arrow(ax, -7, 75, -2.5, 50, color='darkgreen', scale=10)
+    mplu_line(ax, -10, 80, 0, 80, width=3)
+    mplu_line(ax, 0, 80, 10, 80, width=3)
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - -
 def add_titlebox(ax, text):
@@ -146,10 +151,10 @@ def add_titlebox(ax, text):
 # ---------------------------------------------------
 def main():
     sns.set_style('darkgrid')
-    linspace_1_to_10()
-    quadratic_more_structured()
-    two_subplots()
-    three_subplots_advanced()
+    #linspace_1_to_10()
+    #quadratic_more_structured()
+    #two_subplots()
+    #three_subplots_advanced()
     plot_with_decorations()
 
     plt.show()
