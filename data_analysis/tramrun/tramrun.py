@@ -326,7 +326,7 @@ def tram_run_constant_speed_then_hard_stop_odo_delay_with_tag():
     ax.plot(t_array, avl_pos, color='firebrick')
     ax.tick_params(axis='y')
     ax.set_ylim([995, 1050])
-    ax.set_title(f"Tram position, with odometer delay (constant speed = {v_m_s} m/s)")
+    ax.set_title(f"Tram position, with odometer delay (constant speed + hard bracking)")
 
     ax.legend(['real pos', 'estimated pos'], loc=(0.05, 0.86))
     ax_err.legend(['error'], loc=(0.05,0.78))
@@ -337,7 +337,7 @@ def tram_run_constant_speed_then_hard_stop_odo_delay_with_tag():
 # ---------------------------------------------------
 def tram_run_constant_speed_then_soft_stop_odo_delay_with_tag():
     t_start_ms = 0
-    t_end_ms = 20000
+    t_end_ms = 5000
 
     t_array = []
     real_pos = []
@@ -357,7 +357,6 @@ def tram_run_constant_speed_then_soft_stop_odo_delay_with_tag():
 
         previous_real_pos = current_real_pos
         v_m_s = update_speed_constant_until2_then_soft_bracking(v_m_s, t_ms, POS_SAMPLING_PERIOD_MS)
-        print(v_m_s)
         current_real_pos = update_pos(current_real_pos, v_m_s, POS_SAMPLING_PERIOD_MS)
         real_pos.append(current_real_pos)
 
@@ -377,7 +376,7 @@ def tram_run_constant_speed_then_soft_stop_odo_delay_with_tag():
     ax_err.set_ylabel('Error (m)', color='blue')
     ax_err.plot(t_array, error, color='lightblue')
     ax_err.tick_params(axis='y', color='blue')
-    ax_err.set_ylim([-10, 45])
+    ax_err.set_ylim([-10, 60])
     ax_err.fill_between(t_array, error, color='lightblue')
 
     ax = ax_err.twinx()
@@ -385,22 +384,19 @@ def tram_run_constant_speed_then_soft_stop_odo_delay_with_tag():
     ax.plot(t_array, real_pos, color='tab:green')
     ax.plot(t_array, avl_pos, color='firebrick')
     ax.tick_params(axis='y')
-    ax.set_ylim([995, 1050])
-    ax.set_title(f"Tram position, with odometer delay (constant speed = {v_m_s} m/s)")
+    ax.set_ylim([995, 1065])
+    ax.set_title(f"Tram position, with odometer delay (constant speed + soft braking)")
 
     ax.legend(['real pos', 'estimated pos'], loc=(0.05, 0.86))
     ax_err.legend(['error'], loc=(0.05,0.78))
 
-    mplu_realcircle(ax, 0.975, 1012.5, 0.03)
-    mplu_text(ax, 1.24, 1012, "tag reading")
-
 # ---------------------------------------------------
 def main():
     sns.set_style('darkgrid')
-    #tram_run_constant_speed_no_odo_delay_no_tag()
-    #tram_run_constant_speed_no_odo_delay_with_tag()
-    #tram_run_constant_speed_odo_delay_with_tag()
-    #tram_run_constant_speed_then_hard_stop_odo_delay_with_tag()
+    tram_run_constant_speed_no_odo_delay_no_tag()
+    tram_run_constant_speed_no_odo_delay_with_tag()
+    tram_run_constant_speed_odo_delay_with_tag()
+    tram_run_constant_speed_then_hard_stop_odo_delay_with_tag()
     tram_run_constant_speed_then_soft_stop_odo_delay_with_tag()
     plt.show()
 
